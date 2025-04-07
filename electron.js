@@ -9,7 +9,7 @@ function createWindow() {
         width: 1000,
         height: 700,
         webPreferences: {
-        preload: path.join(__dirname, 'preload.js'), // opcional
+            preload: path.join(__dirname, 'preload.js'), // opcional
         },
     });
 
@@ -20,6 +20,9 @@ function createWindow() {
     } else {
         win.loadFile(path.join(__dirname, 'dist/index.html'));
     }
+
+    // 🔍 Abrir DevTools siempre (en dev y en prod)
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);

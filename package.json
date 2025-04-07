@@ -8,10 +8,10 @@
     "dev": "vite",
     "electron": "electron . --no-sandbox",
     "dev:electron": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron . --no-sandbox\"",
-    "build": "vite build",
+    "build": "vite build && cp preload.js dist/",
     "preview": "vite preview",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "npm run build && electron-builder"
   },
   "dependencies": {
     "jwt-decode": "^4.0.0",
@@ -41,6 +41,9 @@
     },
     "extraMetadata": {
       "main": "electron.js"
+    },
+    "win": {
+      "signAndEditExecutable": false
     }
   }
 }
